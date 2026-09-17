@@ -2,7 +2,7 @@
 
 **Cách dùng:** Thay mọi dấu `…` bằng bài làm thật của bạn trước khi nộp link fork trên VLearn. Giữ nguyên bốn mục và bảng để coach đọc nhanh. Viết ngắn, cụ thể theo ảnh/vùng; không cần thuật ngữ chuyên sâu. Ví dụ trong [hướng dẫn mẫu](reports/REPORT_TEMPLATE.md) chỉ giúp hiểu cách điền, không phải câu trả lời để chép lại.
 
-- Mã học viên theo lớp: _(cần bổ sung)_
+- Mã học viên theo lớp: 2A202602098
 - Ngày / CVAT local: 17/09/2026 · CVAT v2.74.1 chạy local (`localhost:8080`), sau đó CVAT v2.74.1 trên máy GPU thuê truy cập qua SSH tunnel
 - Công cụ đã dùng: Polygon, Brush (Polygon +/−, Eraser), gợi ý tự động AI Tools → Interactor **Segment Anything** (SAM ViT-H, tự triển khai qua Nuclio trên GPU); mọi mask gợi ý đều tự kiểm class, số object và biên
 
