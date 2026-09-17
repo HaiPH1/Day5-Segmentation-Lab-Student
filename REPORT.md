@@ -42,13 +42,13 @@ Chọn object đầu tiên bạn tự vẽ ở `medium_instance`, trước khi x
 
 Chọn một lỗi **có thật** trong bài. Nếu công cụ lỗi khiến bạn chưa sửa được, ghi rõ đã thử gì và cần coach hỗ trợ gì; không ghi “đã sửa” khi chưa sửa.
 
-- Task/ảnh/vùng: `medium_instance`, `000000181542.jpg`, polygon `person` của người lái xe máy.
-- Lỗi thuộc loại: sai lớp / thiếu-thừa vật / gộp-tách / biên / phủ vùng / khác: biên (tràn sang instance khác).
-- Bằng chứng tôi nhìn thấy: mép phải polygon phần chân và tay phủ lên cánh tay, tay áo và vạt áo dài của người đứng phía trước.
-- Quy tắc và hành động sửa: vẽ sát phần nhìn thấy, pixel của người đứng trước thuộc người đó; kéo các điểm mép phải về bám mép áo dài.
-- Sau sửa đã Save và export lại chưa? Đã Save và export. Kiểm ZIP cuối: trong ảnh này không còn cặp mask nào chồng lấn quá 100 pixel.
+- Task/ảnh/vùng: `medium_instance`, `000000181542.jpg`, nhóm người đi bộ nhỏ ở xa trên vỉa hè, dưới biển hiệu CHANEL (khoảng giữa phía trên ảnh).
+- Lỗi thuộc loại: sai lớp / thiếu-thừa vật / gộp-tách / biên / phủ vùng / khác: gộp-tách (nhiều người gộp thành một object).
+- Bằng chứng tôi nhìn thấy: trong ZIP đã nộp, cả nhóm chỉ là **một** mask `person` rộng khoảng 156 × 37 px, gồm 4 mảng rời nhau, mỗi mảng là một người khác nhau; danh sách Objects đếm ít người hơn số người nhìn thấy.
+- Quy tắc và hành động sửa: mỗi người là một instance riêng, kể cả khi nhỏ và đứng sát nhau; cần xóa mask gộp và vẽ từng người thành một `person`, người quá mờ không phân biệt được thì ghi lại thay vì gộp.
+- Sau sửa đã Save và export lại chưa? **Chưa sửa.** Phát hiện khi rà lại ZIP sau lúc nộp; CVAT trên máy GPU dùng để vẽ Medium đã bị xóa, muốn sửa phải import lại ZIP vào CVAT, tách từng người, Save và export lại.
 
-Nếu bạn **đã xem Summary tự đánh giá trên GitHub Actions hoặc tự chạy script**, ghi ngắn một kết quả liên quan lỗi vừa sửa (ví dụ task, metric trước/sau nếu có): chạy `scoring/scorecard.py --group tiers` với gói reference ba tier được phát, **40.4 / 82**. `medium_instance`: mean matched IoU 0.820, R@0.5 0.69 (TP 49 / FP 9 / FN 22) — biên các mask ghép được khá khớp, mất điểm chủ yếu do bỏ sót người nhỏ ở xa. Không có số trước sửa để so sánh; các ZIP chưa sửa lại sau khi xem kết quả. Scorecard ba tier tối đa **82**, không phải điểm cuối trên 100. Không tự ghi PASS/top 3/bonus; người phụ trách xác nhận theo tiêu chí lớp. Không đưa file ground truth vào fork.
+Nếu bạn **đã xem Summary tự đánh giá trên GitHub Actions hoặc tự chạy script**, ghi ngắn một kết quả liên quan lỗi vừa sửa (ví dụ task, metric trước/sau nếu có): chạy `scoring/scorecard.py --group tiers` với gói reference ba tier được phát, **40.4 / 82**. `medium_instance`: mean matched IoU 0.820, R@0.5 0.69 (TP 49 / FP 9 / FN 22) , nộp 58 object so với 71 — biên các mask ghép được khá khớp, mất điểm chủ yếu do bỏ sót hoặc gộp người nhỏ ở xa như lỗi trên. Lỗi chưa sửa nên chưa có số trước/sau; các ZIP chưa sửa lại sau khi xem kết quả. Scorecard ba tier tối đa **82**, không phải điểm cuối trên 100. Không tự ghi PASS/top 3/bonus; người phụ trách xác nhận theo tiêu chí lớp. Không đưa file ground truth vào fork.
 
 ## 4. Ba ca chưa chắc hoặc đã cân nhắc
 
